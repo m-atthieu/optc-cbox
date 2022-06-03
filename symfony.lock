@@ -203,6 +203,12 @@
             "src/Kernel.php"
         ]
     },
+    "symfony/http-client": {
+        "version": "v6.1.0"
+    },
+    "symfony/http-client-contracts": {
+        "version": "v3.1.0"
+    },
     "symfony/http-foundation": {
         "version": "v6.1.0"
     },
@@ -254,9 +260,6 @@
     },
     "symfony/string": {
         "version": "v6.1.0"
-    },
-    "symfony/test-pack": {
-        "version": "1.0.10"
     },
     "symfony/var-dumper": {
         "version": "v6.1.0"
