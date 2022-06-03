@@ -25,11 +25,6 @@ class RetreiveCommand
         $this->storage_dir = $kernel->getStorageDir();        
     }
 
-    protected function configure()
-    {
-        // ...
-    }
-
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
 		$base = 'https://raw.githubusercontent.com/optc-db/optc-db.github.io/master';
