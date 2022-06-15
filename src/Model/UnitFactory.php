@@ -2,30 +2,31 @@
 
 namespace App\Model;
 
-use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
-use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\HttpKernel\KernelInterface;
+use App\Kernel;
 
 class UnitFactory
 {
     private $units;
-    private static $instance = null;
 
-    public static function getInstance(): UnitFactory
+    public function __construct(Kernel $kernel, array $data=[])
     {
-        if (self::$instance == null) {
-            self::$instance = new self();
-        }
-        return self::$instance;
-    }
-
-    public function __construct()
-    {
-        $data = json_decode(file_get_contents(APP_DIR . "/var/data/units.json"), true);
+        $storage_dir = $kernel->getStorageDir();
+        //$data = json_decode(file_get_contents("{$storage_dir}/units.json"), true);
         $this->units = $data;
     }
 
-    public function unit($unit_id)
+    public function loadFromJsonFile(string $path): void
+    {
+        $data = json_decode($path);
+        $this->load($data);
+    }
+
+    public function load(array $data): void
+    {
+        $this->units = $data;
+    }
+
+    public function unit(int $unit_id): ?Unit
     {
         foreach ($this->units as $unit) {
             // TODO we should definitively log that

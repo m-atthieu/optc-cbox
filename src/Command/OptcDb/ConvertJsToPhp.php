@@ -33,11 +33,8 @@ class ConvertJsToPhp extends Command
         }
         $path = "{$this->storage_dir}/optc-db/raw-{$file}.js";
         $content = file_get_contents($path);
-        preg_match("/window.units = (\[.*?\]);/s", $content, $matches);
-        $content_all = "<?php return {$matches[1]};";
-
-        preg_match("/var globalExUnits = (\[.*?\]);/s", $content, $matches);
-        $content_glb = "<?php return {$matches[1]};";
+        $content_all = $this->transformUnitsCommon($content);
+        $content_glb = $this->transformUnitsGlb($content);
 
         preg_match('/var calcGhostStartID = { "start": ([0-9]+) };/s', $content, $matches);
         $ghostStartId = intval($matches[1]);
@@ -62,20 +59,7 @@ class ConvertJsToPhp extends Command
         }
         $path = "{$this->storage_dir}/optc-db/raw-{$file}.js";
         $content = file_get_contents($path);
-        $content = str_replace(['{', '}'], ['[', ']'], $content);
-        $content = preg_replace('/^(\s*)([a-zA-Z0-9]+)\s*:/m', '$1"$2":', $content);
-        $content = preg_replace([
-            '/rAbility:/', '/captain:/', '/rSpecial:/', '/(\s+\[\s+)special:/', '/\s+base:/'], [
-            '"rAbility":', '"captain":', '"rSpecial":', '$1"special":', ' "base":'], $content);
-        $content = str_replace(':', '=>', $content);
-        $content = preg_replace('/var calcGhostStartID = \["start"=> [0-9]+, "increment"=> [0-9+]\];/s', "\n", $content);
-        preg_match("/window.details = (\[.*\]);/s", $content, $matches);
-
-        //var_dump('details content', $content);
-        //var_dump('details', $matches);
-
-        $content = "<?php return {$matches[1]};";
-        //$content = str_replace('window.details = ', '<?php return ', $content);
+		$content = $this->transformDetails($content);
         $filename = "{$this->storage_dir}/optc-db/{$file}.php";
         file_put_contents($filename, $content);
         $data = include($filename);
@@ -155,4 +139,35 @@ class ConvertJsToPhp extends Command
 
         return self::SUCCESS;
     }
+
+    public function transformUnitsCommon(string $content): string
+    {
+        preg_match("/window.units = (\[.*?\]);/s", $content, $matches);
+        $content = "<?php return {$matches[1]};";
+        return $content;
+    }
+
+    public function transformUnitsGlb(string $content): string
+    {
+        preg_match("/var globalExUnits = (\[.*?\]);/s", $content, $matches);
+        $content = "<?php return {$matches[1]};";
+        return $content;
+    }
+
+	public function transformDetails(string $content): string
+	{
+		$content = str_replace(['{', '}'], ['[', ']'], $content);
+        $content = preg_replace('/^(\s*)([a-zA-Z0-9]+)\s*:/m', '$1"$2":', $content);
+        $content = preg_replace([
+            '/rAbility:/', '/captain:/', '/rSpecial:/', '/(\s+\[\s+)special:/', '/\s+base:/'], [
+            '"rAbility":', '"captain":', '"rSpecial":', '$1"special":', ' "base":'], $content);
+        $content = str_replace(':', '=>', $content);
+        $content = preg_replace('/var calcGhostStartID = \["start"=> [0-9]+, "increment"=> [0-9+]\];/s', "\n", $content);
+        preg_match("/window.details = (\[.*\]);/s", $content, $matches);
+
+        //var_dump('details', $content, $matches);
+
+        $content = "<?php return {$matches[1]};";
+		return $content;
+	}
 }
