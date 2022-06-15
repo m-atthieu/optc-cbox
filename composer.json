@@ -72,6 +72,7 @@
         "phpmd": "vendor/bin/phpmd src,tests text phpmd.ruleset.xml",
         "phpcs": "vendor/bin/phpcs",
         "tests": "bin/phpunit",
+        "coverage": "bin/phpunit --coverage-text",
         "ci": [
             "@phpstan",
             "@phpmd",
