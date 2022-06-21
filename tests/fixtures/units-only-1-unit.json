@@ -1,0 +1,40 @@
+[
+    {
+        "id": 1,
+        "name": "Monkey D. Luffy",
+        "type": "STR",
+        "class": [
+            "Fighter"
+        ],
+        "stars": 2,
+        "cost": 1,
+        "combo": 5,
+        "sockets": 0,
+        "max_lvl": 5,
+        "exp_to_max": 163,
+        "lvl_1_hp": 42,
+        "lvl_1_atk": 15,
+        "lvl_1_rcv": 8,
+        "max_hp": 134,
+        "max_atk": 68,
+        "max_rcv": 15,
+        "growth_rate": 1,
+        "details": {
+            "special": "Deals 5x character's ATK in [STR] damage to one enemy",
+            "specialName": "Spinning Gum Punch"
+        },
+        "evolutions": {
+            "evolution": 2,
+            "evolvers": [
+                78
+            ]
+        },
+        "flags": {
+            "global": 1
+        },
+        "cooldowns": {
+            "min": 2,
+            "max": 3
+        }
+    }
+]

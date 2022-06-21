@@ -8,7 +8,7 @@ class UnitFactory
 {
     private $units;
 
-    public function __construct(Kernel $kernel, array $data=[])
+    public function __construct(Kernel $kernel, array $data = [])
     {
         $storage_dir = $kernel->getStorageDir();
         //$data = json_decode(file_get_contents("{$storage_dir}/units.json"), true);
@@ -17,7 +17,8 @@ class UnitFactory
 
     public function loadFromJsonFile(string $path): void
     {
-        $data = json_decode($path);
+        $content = file_get_contents($path);
+        $data = json_decode($content, true);
         $this->load($data);
     }
 

@@ -19,11 +19,7 @@ class UnitFactoryTest extends KernelTestCase
 
     public function testInstanceHasUnits()
     {
-        $this->instance->load([
-            1 => [
-
-            ]
-        ]);
+        $this->instance->loadFromJsonFile(__DIR__ . '/../fixtures/units-only-1-unit.json');
         $units = $this->instance->all();
         $this->assertGreaterThan(0, count($units));
     }
