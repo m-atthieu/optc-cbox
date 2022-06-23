@@ -42,7 +42,7 @@ class RetreiveCommand extends Command
 
         $dest_dir = "{$this->storage_dir}/optc-db";
         if (! $this->fs->exists($dest_dir)) {
-            $this->fs->mkdir($dest_dir, 0777, true);
+            $this->fs->mkdir($dest_dir, 0777);
         }
 
         foreach ($url as $key => $value) {
