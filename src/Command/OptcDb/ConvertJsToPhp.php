@@ -59,7 +59,7 @@ class ConvertJsToPhp extends Command
         }
         $path = "{$this->storage_dir}/optc-db/raw-{$file}.js";
         $content = file_get_contents($path);
-		$content = $this->transformDetails($content);
+        $content = $this->transformDetails($content);
         $filename = "{$this->storage_dir}/optc-db/{$file}.php";
         file_put_contents($filename, $content);
         $data = include($filename);
@@ -154,9 +154,9 @@ class ConvertJsToPhp extends Command
         return $content;
     }
 
-	public function transformDetails(string $content): string
-	{
-		$content = str_replace(['{', '}'], ['[', ']'], $content);
+    public function transformDetails(string $content): string
+    {
+        $content = str_replace(['{', '}'], ['[', ']'], $content);
         $content = preg_replace('/^(\s*)([a-zA-Z0-9]+)\s*:/m', '$1"$2":', $content);
         $content = preg_replace([
             '/rAbility:/', '/captain:/', '/rSpecial:/', '/(\s+\[\s+)special:/', '/\s+base:/'], [
@@ -168,6 +168,6 @@ class ConvertJsToPhp extends Command
         //var_dump('details', $content, $matches);
 
         $content = "<?php return {$matches[1]};";
-		return $content;
-	}
+        return $content;
+    }
 }

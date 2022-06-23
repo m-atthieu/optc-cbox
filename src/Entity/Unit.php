@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Model;
+namespace App\Entity;
 
+use App\Model\PotentialType;
 use JsonSerializable;
 
 class Unit implements JsonSerializable
 {
     private $data;
 
-    function __construct($data)
+    public function __construct($data)
     {
         $this->data = $data;
     }
@@ -19,7 +20,7 @@ class Unit implements JsonSerializable
         return $this->data;
     }
 
-    function __get($key)
+    public function __get($key)
     {
         switch ($key) {
             case 'max_cd':
@@ -47,7 +48,7 @@ class Unit implements JsonSerializable
         }
     }
 
-    function __isset($key)
+    public function __isset($key)
     {
         switch ($key) {
             case 'max_cd':
@@ -60,19 +61,19 @@ class Unit implements JsonSerializable
         }
     }
 
-    function is_farmable()
+    public function isFarmable()
     {
         return ! $this->is_rr();
     }
 
-    function is_rr()
+    public function isRr()
     {
         return array_key_exists('flags', $this->data) &&
             array_key_exists('rr', $this->data['flags']) &&
             $this->data['flags']['rr'] == 1;
     }
 
-    function is_lrr()
+    public function isLrr()
     {
         return array_key_exists('flags', $this->data) &&
             array_key_exists('rr', $this->data['flags']) &&
@@ -80,17 +81,17 @@ class Unit implements JsonSerializable
             $this->data['flags']['lrr'] == 1;
     }
 
-    function is_legend()
+    public function isLegend()
     {
-        return $this->is_rr() && $this->data['stars'] >= 6;
+        return $this->isRr() && $this->data['stars'] >= 6;
     }
 
-    function isDualUnit()
+    public function isDualUnit()
     {
         return is_array($this->type);
     }
 
-    function getClasses()
+    public function getClasses()
     {
         if (is_array($this->data['class'][0])) {
             return join(',', array_map(function ($e) {
@@ -100,7 +101,7 @@ class Unit implements JsonSerializable
         return join(',', $this->data['class']);
     }
 
-    function getMaxCd()
+    public function getMaxCd()
     {
         if (! array_key_exists('cooldowns', $this->data)) {
             return 1;
@@ -109,7 +110,7 @@ class Unit implements JsonSerializable
         }
     }
 
-    function getMaxLb()
+    public function getMaxLb()
     {
         // beware of double rainbow
         if (! array_key_exists('limit', $this->data['details'])) {
@@ -127,7 +128,7 @@ class Unit implements JsonSerializable
         }
     }
 
-    function lb_key_level()
+    public function getLbKeyLevel()
     {
         $i = 1;
         foreach ($this->data['details']['limit'] as $limit) {
@@ -139,7 +140,7 @@ class Unit implements JsonSerializable
         return $i;
     }
 
-    function getMaxLbPlus()
+    public function getMaxLbPlus()
     {
         if (! $this->hasLbPlus()) {
             return $this->getMaxLb();
@@ -148,17 +149,12 @@ class Unit implements JsonSerializable
         return count($this->data['details']['limit']);
     }
 
-    function has_lb()
-    {
-        return $this->hasLb();
-    }
-
-    function hasLb()
+    public function hasLb()
     {
         return array_key_exists('details', $this->data) && array_key_exists('limit', $this->data['details']);
     }
 
-    function hasLbPlus()
+    public function hasLbPlus()
     {
         if (! $this->hasLb()) {
             return false;
@@ -172,7 +168,7 @@ class Unit implements JsonSerializable
         return false;
     }
 
-    function has3rdPotential()
+    public function has3rdPotential()
     {
         if (! $this->hasLb()) {
             return false;
@@ -185,17 +181,17 @@ class Unit implements JsonSerializable
         return count($this->data['details']['potential']) == 3;
     }
 
-    function has_support()
+    public function hasSupport()
     {
         return array_key_exists('support', $this->data['details']);
     }
 
-    function has_potential()
+    public function hasPotential()
     {
-        return $this->nb_potential() > 0;
+        return $this->getNumPotential() > 0;
     }
 
-    function nb_potential()
+    public function getNumPotential()
     {
         if (! array_key_exists('limit', $this->data['details'])) {
             return 0;
@@ -216,7 +212,7 @@ class Unit implements JsonSerializable
         return $p; // count($this->data['details']['potential']);
     }
 
-    function potential_name($index)
+    public function getPotentialNameAt($index)
     {
         $name = $this->data['details']['potential'][$index]['Name'];
         if (isset(PotentialType::$errata[$name])) {
@@ -225,23 +221,23 @@ class Unit implements JsonSerializable
         return $name;
     }
 
-    function potential_icon($index)
+    public function getPotentialIconAt($index)
     {
-        $name = $this->potential_name($index);
+        $name = $this->getPotentialNameAt($index);
         return PotentialType::$p_icons[$name];
     }
 
-    function nb_potential_lbp()
+    public function getNumPotentialLbp()
     {
         return count($this->data['details']['potential']);
     }
 
-    function has_evolution()
+    public function hasEvolution()
     {
         return array_key_exists('evolutions', $this->data);
     }
 
-    function get_evolution_id()
+    public function getEvolutionId()
     {
         if (is_array($this->data['evolutions']['evolution'])) {
             return $this->data['evolutions']['evolution'][0];
@@ -250,12 +246,12 @@ class Unit implements JsonSerializable
         }
     }
 
-    function has_socket()
+    public function hasSocket()
     {
         return $this->data['sockets'] > 0;
     }
 
-    function nb_additional_socket($lb)
+    public function getNumAdditionalSocketAtLb($lb)
     {
         if (! array_key_exists('limit', $this->data['details'])) {
             return 0;
@@ -268,7 +264,7 @@ class Unit implements JsonSerializable
         return count($additional);
     }
 
-    function has_pf()
+    public function hasPf()
     {
         return array_key_exists('festAbility', $this->data['details']) || array_key_exists('rumble', $this->data);
     }

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Model;
+namespace App\Repository;
 
 use App\Kernel;
 
-class UnitFactory
+class UnitRepository
 {
     private $units;
 

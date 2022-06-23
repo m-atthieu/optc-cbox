@@ -1,20 +1,21 @@
 <?php
 
-namespace App\Tests\Model;
+namespace App\Tests\Repository;
 
 use App\Model\Unit;
 use App\Model\UnitFactory;
+use App\Repository\UnitRepository;
 use PHPUnit\Framework\TestCase;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
-class UnitFactoryTest extends KernelTestCase
+class UnitRepositoryTest extends KernelTestCase
 {
-    private UnitFactory $instance;
+    private UnitRepository $instance;
 
     public function setUp(): void
     {
         $kernel = self::bootKernel();
-        $this->instance = new UnitFactory($kernel);
+        $this->instance = new UnitRepository($kernel);
     }
 
     public function testInstanceHasUnits()
