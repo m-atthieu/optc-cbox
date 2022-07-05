@@ -22,6 +22,14 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
-    App\Model\UnitFactory:
+    App\Repository\UnitRepository:
         calls:
             - loadFromJsonFile: [ '%kernel.project_dir%/var/storage/%kernel.environment%/units.json' ]
+    App\Repository\UserBoxRepository:
+        arguments:
+            $base_path: '%kernel.project_dir%/var/storage/%kernel.environment%/user_boxes'
+    App\Model\FamilyOrder:
+        arguments:
+            - '%kernel.project_dir%/var/storage/%kernel.environment%/optc-db/families.json'
+    JsonMapper\JsonMapper:
+        factory: [ '@JsonMapper\JsonMapperFactory', 'bestFit' ]

@@ -2,47 +2,42 @@
 
 namespace App\Repository;
 
+use App\Entity\Unit;
 use App\Kernel;
+use JsonMapper\JsonMapper;
 
 class UnitRepository
 {
-    private $units;
+    private array $units;
 
-    public function __construct(Kernel $kernel, array $data = [])
+    public function __construct(private JsonMapper $mapper)
     {
-        $storage_dir = $kernel->getStorageDir();
-        //$data = json_decode(file_get_contents("{$storage_dir}/units.json"), true);
-        $this->units = $data;
+        $this->units = [];
     }
 
     public function loadFromJsonFile(string $path): void
     {
         $content = file_get_contents($path);
-        $data = json_decode($content, true);
-        $this->load($data);
-    }
-
-    public function load(array $data): void
-    {
-        $this->units = $data;
-    }
-
-    public function unit(int $unit_id): ?Unit
-    {
-        foreach ($this->units as $unit) {
-            // TODO we should definitively log that
-            if (! isset($unit['id'])) {
-                continue;
-            }
-            if ($unit['id'] == $unit_id) {
-                return new Unit($unit);
+        $data = json_decode($content);
+        foreach ($data as $object) {
+            $unit = new Unit();
+            if (property_exists($object, 'id')) {
+                $this->units[] = $this->mapper->mapObject($object, $unit);
             }
         }
-
-        throw new \Exception("Unit not found for unit_id '{$unit_id}'");
     }
 
-    public function all()
+    public function findOneById(int $unit_id): ?Unit
+    {
+        foreach ($this->units as $unit) {
+            if ($unit->id == $unit_id) {
+                return $unit;
+            }
+        }
+        return null;
+    }
+
+    public function findAll(): array
     {
         return $this->units;
     }

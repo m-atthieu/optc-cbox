@@ -1,0 +1,47 @@
+[
+    {
+        "card_id": "a2dca9f4-165c-4c65-af0f-40a69f09f00e",
+        "cd": 6,
+        "date": "",
+        "get_date": 600,
+        "hint": "Luffy & Ace",
+        "lb": 30,
+        "lvl": 99,
+        "note": "",
+        "plus": {
+            "atk": 100,
+            "hp": 100,
+            "rcv": 100
+        },
+        "potential": [
+            5,
+            5,
+            5
+        ],
+        "sockets": [
+            {
+                "lvl": 5,
+                "type": "dr"
+            },
+            {
+                "lvl": 5,
+                "type": "cd"
+            },
+            {
+                "lvl": 5,
+                "type": "lock"
+            },
+            {
+                "lvl": 5,
+                "type": "despair"
+            },
+            {
+                "lvl": 5,
+                "type": "ah"
+            }
+        ],
+        "unit_id": 1985,
+        "support": 0,
+        "llb": 0
+    }
+]

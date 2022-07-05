@@ -2,22 +2,54 @@
 
 namespace App\Entity;
 
+use App\Entity\Unit\Cooldowns;
+use App\Entity\Unit\Details;
+use App\Entity\Unit\Evolutions;
+use App\Entity\Unit\Flags;
 use App\Model\PotentialType;
 use JsonSerializable;
 
 class Unit implements JsonSerializable
 {
-    private $data;
+    //private $data;
+    public int $id;
+    public string $name;
+    public string $stars;
+    public int $sockets;
+    private array $type;
+    private array $class;
+    public Details $details;
+    public Evolutions $evolutions;
+    public Flags $flags;
+    public Cooldowns $cd;
 
-    public function __construct($data)
+    public function __construct()
     {
-        $this->data = $data;
+        $this->type = [];
     }
 
-    public function jsonSerialize()
+    public function setType(mixed $value)
     {
-        //return (object) get_object_vars($this);
-        return $this->data;
+        if (is_array($value)) {
+            $this->type = $value;
+        } else {
+            $this->type[] = $value;
+        }
+    }
+
+    public function setClass(mixed $value)
+    {
+        if (is_array($value)) {
+            $this->class = $value;
+        } else {
+            $this->class[] = $value;
+        }
+    }
+
+    public function jsonSerialize(): mixed
+    {
+        return (object) get_object_vars($this);
+        //return $this->data;
     }
 
     public function __get($key)
@@ -63,7 +95,7 @@ class Unit implements JsonSerializable
 
     public function isFarmable()
     {
-        return ! $this->is_rr();
+        return ! $this->isRr();
     }
 
     public function isRr()

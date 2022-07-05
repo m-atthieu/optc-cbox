@@ -5,23 +5,26 @@ namespace App\Tests\Repository;
 use App\Model\Unit;
 use App\Model\UnitFactory;
 use App\Repository\UnitRepository;
+use JsonMapper\JsonMapper;
 use PHPUnit\Framework\TestCase;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
-class UnitRepositoryTest extends KernelTestCase
+class UnitRepositoryTest extends TestCase
 {
     private UnitRepository $instance;
 
     public function setUp(): void
     {
-        $kernel = self::bootKernel();
-        $this->instance = new UnitRepository($kernel);
+        $mapper = $this->getMockBuilder(JsonMapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+        $this->instance = new UnitRepository($mapper);
     }
 
     public function testInstanceHasUnits()
     {
         $this->instance->loadFromJsonFile(__DIR__ . '/../fixtures/units-only-1-unit.json');
-        $units = $this->instance->all();
+        $units = $this->instance->findAll();
         $this->assertGreaterThan(0, count($units));
     }
 

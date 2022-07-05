@@ -7,6 +7,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use App\Model\UnitFactory;
+use App\Repository\UnitRepository;
 use Symfony\Component\Console\Attribute\AsCommand;
 
 #[AsCommand(
@@ -48,17 +49,17 @@ class TransformAndMergeCommand extends Command
             if ($unit[0] == '') {
                 continue;
             }
-            $id = UnitFactory::unfakeId($i + 1);
+            $id = UnitRepository::unfakeId($i + 1);
             $item = $this->transformUnit($id, $unit);
             /* glb exclusive units starts at line 3334 */
-            if ($i > UnitFactory::GLB_EXCLUSIVE_LIMIT/*$id >= 5000*/) {
-                $un_name = UnitFactory::unfakeName($i + 1);
+            if ($i > UnitRepository::GLB_EXCLUSIVE_LIMIT/*$id >= 5000*/) {
+                $un_name = UnitRepository::unfakeName($i + 1);
                 if ($un_name != $unit[0]) {
                     $output->writeln("<error>[ERROR] optc-db-id:" . ($i + 1) . " glb-id:{$id} {$un_name} != {$unit[0]}</error>");
                 }
             }
             if (abs($id - $i) >= 2) {
-                $un_name = UnitFactory::unfakeName($i + 1);
+                $un_name = UnitRepository::unfakeName($i + 1);
                 if ($un_name != $unit[0]) {
                     $output->writeln("<error>[ERROR] optc-db-id:" . ($i + 1) . " glb-id:{$id} {$un_name} != {$unit[0]}</error>");
                 }
@@ -74,7 +75,10 @@ class TransformAndMergeCommand extends Command
             if (intval($id) >= 5000) {
                 break;
             }
-            $_id = UnitFactory::unfakeId(intval($id));
+            if (count($detail) == 0) {
+                continue;
+            }
+            $_id = UnitRepository::unfakeId(intval($id));
             $data[$_id]['details'] = $detail;
         }
 
@@ -85,7 +89,7 @@ class TransformAndMergeCommand extends Command
             if (intval($id) >= 5000) {
                 break;
             }
-            $_id = UnitFactory::unfakeId(intval($id));
+            $_id = UnitRepository::unfakeId(intval($id));
             $data[$_id]['evolutions'] = $evolution;
         }
 
@@ -96,7 +100,7 @@ class TransformAndMergeCommand extends Command
             if (intval($id) > 5000) {
                 break;
             }
-            $_id = UnitFactory::unfakeId(intval($id));
+            $_id = UnitRepository::unfakeId(intval($id));
             if (isset($data[$_id]['id'])) {
                 $data[$_id]['flags'] = $flag;
             } else {
@@ -111,7 +115,7 @@ class TransformAndMergeCommand extends Command
             if (intval($id) >= 5000) {
                 break;
             }
-            $_id = UnitFactory::unfakeId(intval($i));
+            $_id = UnitRepository::unfakeId(intval($i));
             $data[$_id]['family'] = $family;
         }
         /*for($i = 0; $i < count($families) && $i < 4999; ++$i) {
@@ -134,7 +138,7 @@ class TransformAndMergeCommand extends Command
             if (intval($id) >= 5000) {
                 break;
             }
-            $_id = UnitFactory::unfakeId($i + 1);
+            $_id = UnitRepository::unfakeId($i + 1);
             if (! isset($data[$_id])) {
                 if (! is_null($cooldowns[$i])) {
                     $output->writeln("<error>Cooldowns : found cooldown line " . ($i + 1) . " but unit {$_id} is not registered</error>");
