@@ -7,6 +7,7 @@
         "php": ">=8.1",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "json-mapper/symfony-bundle": "^2.2",
         "symfony/console": "*",
         "symfony/dotenv": "*",
         "symfony/flex": "^2",
@@ -16,7 +17,7 @@
         "symfony/yaml": "*"
     },
     "require-dev": {
-        "phpmd/phpmd": "@stable",
+        "phpmd/phpmd": "^2.12",
         "phpstan/extension-installer": "^1.1",
         "phpstan/phpstan-symfony": "^1.2",
         "phpunit/phpunit": "^9.5",

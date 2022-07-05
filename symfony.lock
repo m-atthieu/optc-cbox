@@ -8,11 +8,20 @@
     "doctrine/instantiator": {
         "version": "1.4.1"
     },
+    "json-mapper/json-mapper": {
+        "version": "2.12.0"
+    },
+    "json-mapper/symfony-bundle": {
+        "version": "2.2.0"
+    },
     "masterminds/html5": {
         "version": "2.7.5"
     },
     "myclabs/deep-copy": {
         "version": "1.11.0"
+    },
+    "myclabs/php-enum": {
+        "version": "1.8.3"
     },
     "nikic/php-parser": {
         "version": "v4.14.0"
@@ -90,6 +99,9 @@
     },
     "psr/log": {
         "version": "3.0.0"
+    },
+    "psr/simple-cache": {
+        "version": "1.0.1"
     },
     "sebastian/cli-parser": {
         "version": "1.0.1"

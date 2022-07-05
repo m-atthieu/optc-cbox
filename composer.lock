@@ -4,8 +4,238 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "442121b0db040ae5a72d57e503c3106b",
+    "content-hash": "b074387f83a11ba88c8d0881bbbe49e1",
     "packages": [
+        {
+            "name": "json-mapper/json-mapper",
+            "version": "2.12.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/JsonMapper/JsonMapper.git",
+                "reference": "e0f47fe7d1da09a6203c60b876b9a7fbb2ed127e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/JsonMapper/JsonMapper/zipball/e0f47fe7d1da09a6203c60b876b9a7fbb2ed127e",
+                "reference": "e0f47fe7d1da09a6203c60b876b9a7fbb2ed127e",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "myclabs/php-enum": "^1.7",
+                "nikic/php-parser": "^4.13",
+                "php": "^7.1 || ^8.0",
+                "psr/log": "^1.1 || ^2.0 || ^3.0",
+                "psr/simple-cache": "^1.0",
+                "symfony/polyfill-php73": "^1.18"
+            },
+            "require-dev": {
+                "guzzlehttp/guzzle": "^6.5 || ^7.0",
+                "php-coveralls/php-coveralls": "^2.4",
+                "phpstan/phpstan": "^0.12.14",
+                "phpstan/phpstan-phpunit": "^0.12.17",
+                "phpunit/phpunit": "^7.5 || ^8.5 || ^9.0",
+                "squizlabs/php_codesniffer": "^3.5",
+                "symfony/console": "^2.1 || ^3.0 || ^4.0 || ^5.0",
+                "vimeo/psalm": "^4.10"
+            },
+            "suggest": {
+                "json-mapper/laravel-package": "Use JsonMapper directly with Laravel",
+                "json-mapper/symfony-bundle": "Use JsonMapper directly with Symfony"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "JsonMapper\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Map JSON structures to PHP classes",
+            "homepage": "https://jsonmapper.net",
+            "keywords": [
+                "json",
+                "jsonmapper",
+                "mapper",
+                "middleware"
+            ],
+            "support": {
+                "docs": "https://jsonmapper.net",
+                "issues": "https://github.com/JsonMapper/JsonMapper/issues",
+                "source": "https://github.com/JsonMapper/JsonMapper"
+            },
+            "time": "2022-03-31T18:27:15+00:00"
+        },
+        {
+            "name": "json-mapper/symfony-bundle",
+            "version": "2.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/JsonMapper/SymfonyBundle.git",
+                "reference": "88f589cd643655bf2fa695b1175cd12b8cd271b2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/JsonMapper/SymfonyBundle/zipball/88f589cd643655bf2fa695b1175cd12b8cd271b2",
+                "reference": "88f589cd643655bf2fa695b1175cd12b8cd271b2",
+                "shasum": ""
+            },
+            "require": {
+                "json-mapper/json-mapper": "^2.0",
+                "php": "^7.2 || ^8.0",
+                "symfony/config": "^4.4 | ^5.0 | ^6.0",
+                "symfony/dependency-injection": "^4.4 | ^5.0 | ^6.0",
+                "symfony/http-kernel": "^4.4 | ^5.1.5 | ^6.0"
+            },
+            "require-dev": {
+                "guzzlehttp/guzzle": "^6.5 || ^7.0",
+                "php-coveralls/php-coveralls": "^2.4",
+                "phpstan/phpstan": "^0.12.19",
+                "phpunit/phpunit": "^8.0 || ^9.0",
+                "squizlabs/php_codesniffer": "^3.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "JsonMapper\\SymfonyBundle\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "The JsonMapper bundle for Symfony",
+            "keywords": [
+                "json",
+                "jsonmapper",
+                "laravel",
+                "mapper",
+                "middleware"
+            ],
+            "support": {
+                "issues": "https://github.com/JsonMapper/SymfonyBundle/issues",
+                "source": "https://github.com/JsonMapper/SymfonyBundle/tree/2.2.0"
+            },
+            "time": "2022-01-16T20:48:07+00:00"
+        },
+        {
+            "name": "myclabs/php-enum",
+            "version": "1.8.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/myclabs/php-enum.git",
+                "reference": "b942d263c641ddb5190929ff840c68f78713e937"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/myclabs/php-enum/zipball/b942d263c641ddb5190929ff840c68f78713e937",
+                "reference": "b942d263c641ddb5190929ff840c68f78713e937",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": "^7.3 || ^8.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.5",
+                "squizlabs/php_codesniffer": "1.*",
+                "vimeo/psalm": "^4.6.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MyCLabs\\Enum\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP Enum contributors",
+                    "homepage": "https://github.com/myclabs/php-enum/graphs/contributors"
+                }
+            ],
+            "description": "PHP Enum implementation",
+            "homepage": "http://github.com/myclabs/php-enum",
+            "keywords": [
+                "enum"
+            ],
+            "support": {
+                "issues": "https://github.com/myclabs/php-enum/issues",
+                "source": "https://github.com/myclabs/php-enum/tree/1.8.3"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/mnapoli",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/myclabs/php-enum",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2021-07-05T08:18:36+00:00"
+        },
+        {
+            "name": "nikic/php-parser",
+            "version": "v4.14.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nikic/PHP-Parser.git",
+                "reference": "34bea19b6e03d8153165d8f30bba4c3be86184c1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/34bea19b6e03d8153165d8f30bba4c3be86184c1",
+                "reference": "34bea19b6e03d8153165d8f30bba4c3be86184c1",
+                "shasum": ""
+            },
+            "require": {
+                "ext-tokenizer": "*",
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "ircmaxell/php-yacc": "^0.0.7",
+                "phpunit/phpunit": "^6.5 || ^7.0 || ^8.0 || ^9.0"
+            },
+            "bin": [
+                "bin/php-parse"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.9-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PhpParser\\": "lib/PhpParser"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Nikita Popov"
+                }
+            ],
+            "description": "A PHP parser written in PHP",
+            "keywords": [
+                "parser",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/nikic/PHP-Parser/issues",
+                "source": "https://github.com/nikic/PHP-Parser/tree/v4.14.0"
+            },
+            "time": "2022-05-31T20:59:12+00:00"
+        },
         {
             "name": "psr/cache",
             "version": "3.0.0",
@@ -207,6 +437,57 @@
                 "source": "https://github.com/php-fig/log/tree/3.0.0"
             },
             "time": "2021-07-14T16:46:02+00:00"
+        },
+        {
+            "name": "psr/simple-cache",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/simple-cache.git",
+                "reference": "408d5eafb83c57f6365a3ca330ff23aa4a5fa39b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/simple-cache/zipball/408d5eafb83c57f6365a3ca330ff23aa4a5fa39b",
+                "reference": "408d5eafb83c57f6365a3ca330ff23aa4a5fa39b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\SimpleCache\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "http://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interfaces for simple caching",
+            "keywords": [
+                "cache",
+                "caching",
+                "psr",
+                "psr-16",
+                "simple-cache"
+            ],
+            "support": {
+                "source": "https://github.com/php-fig/simple-cache/tree/master"
+            },
+            "time": "2017-10-23T01:57:42+00:00"
         },
         {
             "name": "symfony/cache",
@@ -2860,62 +3141,6 @@
             "time": "2022-03-03T13:19:32+00:00"
         },
         {
-            "name": "nikic/php-parser",
-            "version": "v4.14.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "34bea19b6e03d8153165d8f30bba4c3be86184c1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/34bea19b6e03d8153165d8f30bba4c3be86184c1",
-                "reference": "34bea19b6e03d8153165d8f30bba4c3be86184c1",
-                "shasum": ""
-            },
-            "require": {
-                "ext-tokenizer": "*",
-                "php": ">=7.0"
-            },
-            "require-dev": {
-                "ircmaxell/php-yacc": "^0.0.7",
-                "phpunit/phpunit": "^6.5 || ^7.0 || ^8.0 || ^9.0"
-            },
-            "bin": [
-                "bin/php-parse"
-            ],
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "4.9-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "PhpParser\\": "lib/PhpParser"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Nikita Popov"
-                }
-            ],
-            "description": "A PHP parser written in PHP",
-            "keywords": [
-                "parser",
-                "php"
-            ],
-            "support": {
-                "issues": "https://github.com/nikic/PHP-Parser/issues",
-                "source": "https://github.com/nikic/PHP-Parser/tree/v4.14.0"
-            },
-            "time": "2022-05-31T20:59:12+00:00"
-        },
-        {
             "name": "pdepend/pdepend",
             "version": "2.10.3",
             "source": {
@@ -5409,9 +5634,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "phpmd/phpmd": 0
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
