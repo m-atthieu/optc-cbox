@@ -8,6 +8,7 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "json-mapper/symfony-bundle": "^2.2",
+        "ramsey/uuid": "^4.3",
         "symfony/console": "*",
         "symfony/dotenv": "*",
         "symfony/flex": "^2",
