@@ -10,6 +10,7 @@ use Symfony\Component\HttpKernel\KernelInterface;
 
 class UserBox
 {
+    /** @var Card[] */
     public $cards;
     public $plus = [
            'hp' => 0,

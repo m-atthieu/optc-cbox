@@ -93,6 +93,9 @@ class Unit implements JsonSerializable
         }
     }
 
+    /*********/
+    /* FLAGS */
+    /*********/
     public function isFarmable()
     {
         return ! $this->isRr();
@@ -100,29 +103,30 @@ class Unit implements JsonSerializable
 
     public function isRr()
     {
-        return array_key_exists('flags', $this->data) &&
-            array_key_exists('rr', $this->data['flags']) &&
-            $this->data['flags']['rr'] == 1;
+        return $this->flags->isRr();
     }
 
     public function isLrr()
     {
-        return array_key_exists('flags', $this->data) &&
-            array_key_exists('rr', $this->data['flags']) &&
-            array_key_exists('lrr', $this->data['flags']) &&
-            $this->data['flags']['lrr'] == 1;
+        return $this->flags->isLrr();
     }
 
     public function isLegend()
     {
-        return $this->isRr() && $this->data['stars'] >= 6;
+        return $this->isRr() && $this->stars >= 6;
     }
 
+    /*********/
+    /* TYPES */
+    /*********/
     public function isDualUnit()
     {
-        return is_array($this->type);
+        return count($this->type) > 1;
     }
 
+    /***********/
+    /* CLASSES */
+    /***********/
     public function getClasses()
     {
         if (is_array($this->data['class'][0])) {
@@ -133,15 +137,22 @@ class Unit implements JsonSerializable
         return join(',', $this->data['class']);
     }
 
+    /*************/
+    /* COOLDOWNS */
+    /*************/
     public function getMaxCd()
     {
-        if (! array_key_exists('cooldowns', $this->data)) {
+        /*if (! array_key_exists('cooldowns', $this->data)) {
             return 1;
         } else {
             return (intval($this->data['cooldowns']['max']) - intval($this->data['cooldowns']['min']) + 1);
-        }
+        }*/
+        return $this->cd->max - $this->cd->min + 1;
     }
 
+    /***************/
+    /* LIMIT BREAK */
+    /***************/
     public function getMaxLb()
     {
         // beware of double rainbow
@@ -215,7 +226,8 @@ class Unit implements JsonSerializable
 
     public function hasSupport()
     {
-        return array_key_exists('support', $this->data['details']);
+        //return array_key_exists('support', $this->data['details']);
+        return $this->details->hasSupport();
     }
 
     public function hasPotential()

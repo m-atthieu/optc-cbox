@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use App\Entity\Card\Plus;
+use App\Entity\Card\Socket;
 use Ramsey\Uuid\Uuid;
 use JsonSerializable;
 
@@ -10,9 +12,31 @@ class Card implements JsonSerializable
     //private $data;
     //private $unit;
     public string $card_id;
+    public int $lvl;
+    public int $lb;
+    public int $unit_id;
+    private ?int $support;
+    public int $llb;
+    public Plus $plus;
+    public int $cd;
+    public string $note;
+    public string $hint;
+    public int $get_date;
+    public string $date;
+    public array $potential;
+    /** @var Socket[] */
+    public array $sockets;
 
     public function __construct()
     {
+    }
+
+    public function setSupport(?int $value)
+    {
+        if (is_null($value)) {
+            $value = 0;
+        }
+        $this->support = $value;
     }
 
     public function jsonSerialize(): mixed

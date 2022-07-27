@@ -2,6 +2,8 @@
 
 namespace App\Model;
 
+use App\Entity\Card;
+
 class FamilyOrder
 {
     private $data;
@@ -36,7 +38,7 @@ class FamilyOrder
         return array_flip($order);
     }
 
-    private function __get($family_name)
+    private function internalGet($family_name)
     {
         if (! is_null($family_name) && array_key_exists($family_name, $this->data)) {
             return $this->data[$family_name];
@@ -52,11 +54,11 @@ class FamilyOrder
         if (is_array($family_name)) {
             $f = [];
             foreach ($family_name as $name) {
-                $f[] = $this->_get($name);
+                $f[] = $this->internalGet($name);
             }
             return min($f);
         } else {
-            return $this->_get($family_name);
+            return $this->internalGet($family_name);
         }
     }
 
