@@ -35,12 +35,9 @@ class ConvertJsToPhpTest extends KernelTestCase
         $this->markTestSkipped();
         $this->tester->execute([]);
         $this->tester->assertCommandIsSuccessful();
-
-        // the output of the command in the console
-        $output = $this->tester->getDisplay();
     }
 
-    public function testTransformDetailsBasicTransformation()
+    public function testTransformDetailsBasicTransformation(): void
     {
         $content = "window.details = {
             1: {
@@ -50,14 +47,14 @@ class ConvertJsToPhpTest extends KernelTestCase
         $this->assertStringContainsString('return', $result);
     }
 
-    public function testTransformUnitsCommonBasicTransformation()
+    public function testTransformUnitsCommonBasicTransformation(): void
     {
         $content = "window.units = [];";
         $result = $this->command->transformUnitsCommon($content);
         $this->assertStringContainsString('return', $result);
     }
 
-    public function testTransformUnitsGlbBasicTransformation()
+    public function testTransformUnitsGlbBasicTransformation(): void
     {
         $content = "var globalExUnits = [];";
         $result = $this->command->transformUnitsGlb($content);

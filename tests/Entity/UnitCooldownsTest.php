@@ -16,7 +16,7 @@ class UnitCooldownsTest extends TestCase
         $this->instance = new Unit();
     }
 
-    public function testCd1IsMax()
+    public function testCd1IsMax(): void
     {
         $cd = new Cooldowns();
         $cd->min = 1;
@@ -25,7 +25,7 @@ class UnitCooldownsTest extends TestCase
         $this->assertEquals(1, $this->instance->getMaxCd());
     }
 
-    public function testCd6()
+    public function testCd6(): void
     {
         $cd = new Cooldowns();
         $cd->min = 1;

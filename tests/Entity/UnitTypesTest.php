@@ -15,19 +15,19 @@ class UnitTypesTest extends TestCase
         $this->instance = new Unit();
     }
 
-    public function testUnitWithOneTypeIsNotDual()
+    public function testUnitWithOneTypeIsNotDual(): void
     {
         $this->instance->setType('INT');
         $this->assertFalse($this->instance->isDualUnit());
     }
 
-    public function testUnitWithArrayOfOneTypeIsNotDual()
+    public function testUnitWithArrayOfOneTypeIsNotDual(): void
     {
         $this->instance->setType(['INT']);
         $this->assertFalse($this->instance->isDualUnit());
     }
 
-    public function testUnitWithTwoTypesIsDual()
+    public function testUnitWithTwoTypesIsDual(): void
     {
         $this->instance->setType(['INT', 'PSY']);
         $this->assertTrue($this->instance->isDualUnit());

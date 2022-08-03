@@ -14,13 +14,13 @@ class FlagsTest extends TestCase
         $this->instance = new Flags();
     }
 
-    public function testRRFlag()
+    public function testRRFlag(): void
     {
         $this->instance->rr = true;
         $this->assertTrue($this->instance->isRr());
     }
 
-    public function testLrrFlag()
+    public function testLrrFlag(): void
     {
         $this->instance->rr = true;
         $this->instance->lrr = true;

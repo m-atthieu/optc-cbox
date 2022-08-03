@@ -16,13 +16,13 @@ class CooldownsTest extends TestCase
         $this->instance = new Cooldowns();
     }
 
-    public function testCd1IsMax()
+    public function testCd1IsMax(): void
     {
         $this->instance->max = $this->instance->min = 1;
         $this->assertTrue($this->instance->isMax());
     }
 
-    public function testCd1On2IsNotMax()
+    public function testCd1On2IsNotMax(): void
     {
         $this->instance->max = 2;
         $this->instance->min = 1;

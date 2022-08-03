@@ -43,8 +43,5 @@ class RetreiveCommandTest extends KernelTestCase
     {
         $this->tester->execute([]);
         $this->tester->assertCommandIsSuccessful();
-
-        // the output of the command in the console
-        $output = $this->tester->getDisplay();
     }
 }

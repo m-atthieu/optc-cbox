@@ -17,7 +17,7 @@ class UnitSupportTest extends TestCase
         $this->instance = new Unit();
     }
 
-    public function testUnitWithSupportHasSupport()
+    public function testUnitWithSupportHasSupport(): void
     {
         $support = new Support();
         $details = new Details();

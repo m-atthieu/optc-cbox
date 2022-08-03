@@ -8,10 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 class UnitClassesTest extends TestCase
 {
-    private Unit $instance;
-
     public function setUp(): void
     {
-        $this->instance = new Unit();
     }
 }

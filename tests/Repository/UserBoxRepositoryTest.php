@@ -27,7 +27,7 @@ class UserBoxRepositoryTest extends TestCase
         $this->instance = new UserBoxRepository($jsonMapper, __DIR__ . '/../fixtures', $cardSorter);
     }
 
-    public function testCanLoadOneUserBox()
+    public function testCanLoadOneUserBox(): void
     {
         $box = $this->instance->findOneByUserId('391245463');
         $this->assertFalse($box == null, 'UserBox should not be null');
@@ -35,7 +35,7 @@ class UserBoxRepositoryTest extends TestCase
         $this->assertTrue(is_a($box, UserBox::class), 'findOneById should return a UserBox');
     }
 
-    public function testUserBoxIsSaved()
+    public function testUserBoxIsSaved(): void
     {
         $id = '391245463';
         $cardSorter = $this->getMockBuilder(CardSorter::class)

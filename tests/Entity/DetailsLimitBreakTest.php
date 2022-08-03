@@ -10,10 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 class DetailsLimitBreakTest extends TestCase
 {
-    private Details $instance;
-
     public function setUp(): void
     {
-        $this->instance = new Details();
     }
 }

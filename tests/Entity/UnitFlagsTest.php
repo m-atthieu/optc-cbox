@@ -15,7 +15,7 @@ class UnitFlagsTest extends TestCase
         $this->instance = new Unit();
     }
 
-    public function testRrUnitIsNotFarmable()
+    public function testRrUnitIsNotFarmable(): void
     {
         $flags = new Flags();
         $flags->rr = true;
@@ -24,7 +24,7 @@ class UnitFlagsTest extends TestCase
         $this->assertTrue($this->instance->isRr());
     }
 
-    public function testLrrUnit()
+    public function testLrrUnit(): void
     {
         $flags = new Flags();
         $flags->lrr = true;
@@ -32,7 +32,7 @@ class UnitFlagsTest extends TestCase
         $this->assertTrue($this->instance->isLrr());
     }
 
-    public function testUnitStar6IsLegend()
+    public function testUnitStar6IsLegend(): void
     {
         $flags = new Flags();
         $flags->rr = true;
@@ -41,7 +41,7 @@ class UnitFlagsTest extends TestCase
         $this->assertTrue($this->instance->isLegend());
     }
 
-    public function testUnitStar6pIsLegend()
+    public function testUnitStar6pIsLegend(): void
     {
         $flags = new Flags();
         $flags->rr = true;

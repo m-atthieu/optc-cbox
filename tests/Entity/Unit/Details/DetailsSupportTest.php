@@ -18,15 +18,14 @@ class DetailsSupportTest extends TestCase
         $this->instance = new Details();
     }
 
-    public function testDetailsCanBeAssignedASingularSupport()
+    public function testDetailsCanBeAssignedASingularSupport(): void
     {
         $this->markTestSkipped('not yet');
-        $support = new Support();
-        $this->instance->support = $support;
+        $this->instance->support = new Support();
         $this->assertTrue($this->instance->hasSupport());
     }
 
-    public function testDetailsCanBeAssignedAnArrayOfSupport()
+    public function testDetailsCanBeAssignedAnArrayOfSupport(): void
     {
         $support = new Support();
         $this->instance->support = [$support];
