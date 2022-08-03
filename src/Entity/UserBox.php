@@ -43,8 +43,8 @@ class UserBox
 
     public function addCard(Card $card)
     {
-        if ($card->chr == 0) {
-            $card->chr = max(count($this->cards), $this->max_chr) + 1;
+        if ($card->getChr() == 0) {
+            $card->setChr(max(count($this->cards), $this->max_chr) + 1);
         }
 
         $this->cards[] = $card;

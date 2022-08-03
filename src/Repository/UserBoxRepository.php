@@ -25,7 +25,7 @@ class UserBoxRepository
         foreach ($objects as $object) {
             $card = new Card();
             $this->mapper->mapObject($object, $card);
-            $userbox->cards[] = $card;
+            $userbox->addCard($card);
         }
         return $userbox;
     }
@@ -35,7 +35,8 @@ class UserBoxRepository
         return $this->loadFromFile($this->base_path . "/{$box_id}.json");
     }
 
-    public function save(UserBox $user_box)
+    public function save(UserBox $user_box, string $box_id): int|false
     {
+        return file_put_contents("{$this->base_path}/{$box_id}.json", json_encode($user_box->cards, JSON_PRETTY_PRINT));
     }
 }

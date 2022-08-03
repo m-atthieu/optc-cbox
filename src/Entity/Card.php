@@ -21,6 +21,7 @@ class Card implements JsonSerializable
     public int $cd;
     public string $note;
     public string $hint;
+    /* aka chr */
     public int $get_date;
     public string $date;
     public array $potential;
@@ -37,6 +38,16 @@ class Card implements JsonSerializable
             $value = 0;
         }
         $this->support = $value;
+    }
+
+    public function getChr(): int
+    {
+        return $this->get_date ?? 0;
+    }
+
+    public function setChr(int $value): void
+    {
+        $this->get_date = $value;
     }
 
     public function jsonSerialize(): mixed
